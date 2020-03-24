@@ -17,13 +17,15 @@ func main() {
 		w.Write([]byte("hi!"))
 	})
 
+	address := "0.0.0.0:" + PORT
 	srv := &http.Server{
 		Handler: router,
-		Addr:    "0.0.0.0:" + PORT,
+		Addr:    address,
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
 
+	log.Printf("Running webserver on http://%s", address)
 	log.Fatal(srv.ListenAndServe())
 }
