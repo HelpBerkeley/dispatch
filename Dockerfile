@@ -26,3 +26,7 @@ RUN cd /opt && \
     bash Miniconda3-latest-Linux-x86_64.sh -b -p ./miniconda
 
 RUN conda install jupyter -y
+
+# install python dependencies
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
