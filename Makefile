@@ -1,4 +1,4 @@
-JUPYTER_PORT=8888
+JUPYTER_PORT=4444
 WEBSERVER_PORT=9000
 
 build_docker_image:
@@ -8,7 +8,8 @@ run_jupyter_notebook: build_docker_image
 	docker run --rm -it \
 		-p ${JUPYTER_PORT}:${JUPYTER_PORT} \
 		-v $(shell pwd)/notebooks:/home \
-		dispatcher jupyter notebook --ip=0.0.0.0 --no-browser --allow-root
+		--workdir="/home" \
+		dispatcher jupyter notebook --ip=0.0.0.0 --port=$(JUPYTER_PORT) --no-browser --allow-root
 
 run_webserver: build_docker_image
 	docker run --rm -it \

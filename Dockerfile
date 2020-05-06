@@ -9,7 +9,7 @@ ENV GOPATH /go
 ENV PATH $PATH:$GOROOT/go/bin:$GOPATH/bin:/opt/miniconda/bin
 
 RUN apt-get update --yes && \
-        apt-get --yes install git wget curl
+    apt-get --yes install git wget curl
 
 # download golang
 RUN mkdir -p ${GOROOT} && \
@@ -25,8 +25,13 @@ RUN cd /opt && \
     curl -O -s -L https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
     bash Miniconda3-latest-Linux-x86_64.sh -b -p ./miniconda
 
+# install jupyter
 RUN conda install jupyter -y
 
 # install python dependencies
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
+
+# install dispatcher
+COPY dispatch_optimization ./dispatch_optimization
+RUN cd dispatch_optimization && pip install .
