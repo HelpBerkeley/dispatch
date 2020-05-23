@@ -1,0 +1,5 @@
+**/*.csv
+**/.DS_STORE
+.vscode
+.ipynb_checkpoints
+**/__pycache__

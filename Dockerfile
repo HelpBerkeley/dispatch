@@ -33,5 +33,9 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
 # install dispatcher
-COPY dispatch_optimization ./dispatch_optimization
-RUN cd dispatch_optimization && pip install .
+COPY dispatcher ./dispatcher
+RUN cd dispatcher && pip install .
+
+# gmaps setup for notebook viz
+RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension && \
+    jupyter nbextension enable --py --sys-prefix gmaps
