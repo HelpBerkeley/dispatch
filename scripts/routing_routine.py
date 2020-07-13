@@ -8,6 +8,9 @@ import os
 import sys
 
 
+OUTPUT_FILE = "/tmp/helpberkeley_routes.csv"
+
+
 # utility functions
 def split_by_drivers(df):
     '''
@@ -117,4 +120,4 @@ if __name__ == "__main__":
     for d in split_by_drivers(df):
         res.append(run_algo(d))
     output = pd.concat(res).reset_index(drop=True)
-    output.to_csv('/tmp/helpberkeley_routes.csv', index=False)
+    output.to_csv(OUTPUT_FILE, index=False)
