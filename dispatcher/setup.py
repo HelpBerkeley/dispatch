@@ -12,6 +12,6 @@ setuptools.setup(
     install_requires=[
         "gmaps==0.9.0",
         "googlemaps==4.2.0",
-        "numpy==1.18.2",
+        "numpy==1.22.0",
     ],
 )
